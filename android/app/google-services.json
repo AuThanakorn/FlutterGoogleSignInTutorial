@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "624090991316",
+    "project_id": "signinflutter-f3eec",
+    "storage_bucket": "signinflutter-f3eec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624090991316:android:78c027ef78c39ecf210941",
+        "android_client_info": {
+          "package_name": "com.example.google_login_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624090991316-ohsmfea901e9fphmthtj5hk0c946n51b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF5g_3WBwrrlZxzKmAajUfa_B5b9estuY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624090991316-bcvkjag1kvfl9lf6kakpkjqh1shmrhd2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "624090991316-74lnb7vpdhbg6qf1sm4mp3teckcgueac.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.amityBlog.googleLoginProject"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
