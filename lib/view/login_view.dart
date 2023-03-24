@@ -9,6 +9,8 @@ import '../custom_component/custom_button.dart';
 import '../custom_component/custom_entry_field.dart';
 
 class LoginView extends StatefulWidget {
+  const LoginView({super.key});
+
   @override
   _LoginViewState createState() => _LoginViewState();
 }
@@ -23,13 +25,13 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     var mediaQuery = MediaQuery.of(context);
-    return Consumer<AuthenticationVM>(builder: (context, vm, _) {
+    return Consumer<AuthenticationVM>(builder: (context, authVM, _) {
       return Scaffold(
         body: SingleChildScrollView(
           child: Container(
             height: mediaQuery.size.height,
             padding: const EdgeInsets.all(16.0),
-            child: vm.isLoading
+            child: authVM.isLoading
                 ? Column(
                     children: [
                       Expanded(
@@ -51,20 +53,20 @@ class _LoginViewState extends State<LoginView> {
                         radius: 12,
                         borderColor: Colors.black,
                         onTap: () async {
-                          await vm.googleSignIn((isSuccess, error) {
+                          await authVM.googleSignIn((isSuccess, error) {
                             if (isSuccess) {
-                              print("success");
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HomeView()),
-                              );
+                              print("Navigate toHomeView");
                             } else {
-                              print("fail");
                               AlertDialog(
                                   content: Text(error ?? "no error message"));
                             }
                           });
+                          // ignore: use_build_context_synchronously
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HomeView()),
+                          );
                         },
                         icon: Image.asset('assets/Icons/ic_login_google.png',
                             scale: 3),

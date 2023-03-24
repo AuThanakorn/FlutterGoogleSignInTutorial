@@ -1,6 +1,5 @@
+import 'package:amity_sdk/amity_sdk.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_login_project/viewModel/authentication_viewmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -16,8 +15,13 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Consumer<AuthenticationVM>(builder: (context, vm, _) {
+    return Consumer<AuthenticationVM>(builder: (context, authVM, _) {
       return Scaffold(
         body: Row(
           children: [
@@ -26,7 +30,15 @@ class _HomeViewState extends State<HomeView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text("home screen"),
+                  const Text("home screen"),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  (!AmityCoreClient.isUserLoggedIn())
+                      ? const CircularProgressIndicator()
+                      : Text(
+                          "user:${AmityCoreClient.getCurrentUser().displayName}"),
+                  // ignore: prefer_const_constructors
                   SizedBox(
                     height: 20,
                   ),
@@ -35,7 +47,7 @@ class _HomeViewState extends State<HomeView> {
                     radius: 12,
                     borderColor: Colors.black,
                     onTap: () async {
-                      await vm.signOut((isSuccess, error) {
+                      await authVM.signOut((isSuccess, error) {
                         if (isSuccess) {
                           print("success");
                           Navigator.push(
